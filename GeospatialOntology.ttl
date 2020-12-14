@@ -1,0 +1,1002 @@
+@prefix : <http://ulusalharita.tr/ont/spo#> .
+@prefix dc: <http://purl.org/dc/elements/1.1/> .
+@prefix sf: <http://www.opengis.net/ont/sf#> .
+@prefix dbc: <http://dbpedia.org/resource/Category:> .
+@prefix dbr: <http://dbpedia.org/resource/> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix dul: <http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#> .
+@prefix geo: <http://www.opengis.net/ont/geosparql#> .
+@prefix got: <http://ulusalharita.tr/go/topo#> .
+@prefix idt: <http://ulusalharita.tr/id/topo#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix spo: <http://ulusalharita.tr/ont/spo#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix yago: <http://yago-knowledge.org/resource/> .
+@prefix schema: <http://schema.org/> .
+@base <http://ulusalharita.tr/ont/spo> .
+
+<http://ulusalharita.tr/ont/spo> rdf:type owl:Ontology ;
+                                  dct:creator "***" ;
+                                  rdfs:comment "Bu ontoloji tematik ve topografik detayları ve bunların mekansal ilişkilerini kartografik ölçek kavramıyla birlikte tanımlar."@tr ,
+                                               """Cartographic scale concept is adapted from work of Huang et. al. (2018) and Eiðsson C. (2018).
+
+Huang, W., Mansourian, A., Abdolmajidi, E., Xu, H., & Harrie, L. (2018). Synchronising geometric representations for map mashups using relative positioning and Linked Data. International Journal of Geographical Information Science, 32(6), 1117–1137.
+
+Eiðsson, E. K. (2018). Transformation and linking of authoritative multi-scale geodata for the Semantic Web: a case study of Swedish national building data sets. In Lund University."""@en ,
+                                               "This ontology defines topographic and thematic features and their spatial relations through the cartographic scale concept."@en ;
+                                  rdfs:label "Mekansal Ontoloji"@tr ,
+                                             "Spatial Otology"@en ;
+                                  owl:versionInfo 2020 .
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+###  http://purl.org/dc/terms/abstract
+dct:abstract rdf:type owl:AnnotationProperty ;
+             rdfs:label "Abstract"@en-us ;
+             skos:definition "A summary of the resource."@en-us ;
+             rdfs:subPropertyOf dct:description .
+
+
+###  http://purl.org/dc/terms/alternative
+dct:alternative rdf:type owl:AnnotationProperty ;
+                rdfs:comment "The distinction between titles and alternative titles is application-specific."@en-us ;
+                rdfs:label "Alternative Title"@en-us ;
+                skos:definition "An alternative name for the resource."@en-us ;
+                skos:note "In current practice, this term is used primarily with literal values; however, there are important uses with non-literal values as well. As of December 2007, the DCMI Usage Board is leaving this range unspecified pending an investigation of options."@en-us ;
+                rdfs:subPropertyOf dct:title .
+
+
+###  http://purl.org/dc/terms/contributor
+dct:contributor rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/creator
+dct:creator rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/description
+dct:description rdf:type owl:AnnotationProperty ;
+                rdfs:comment "Description may include but is not limited to: an abstract, a table of contents, a graphical representation, or a free-text account of the resource."@en-us ;
+                rdfs:label "Description"@en-us ;
+                skos:definition "An account of the resource."@en-us .
+
+
+###  http://purl.org/dc/terms/tableOfContents
+dct:tableOfContents rdf:type owl:AnnotationProperty ;
+                    rdfs:label "Table Of Contents"@en-us ;
+                    skos:definition "A list of subunits of the resource."@en-us ;
+                    rdfs:subPropertyOf dct:description .
+
+
+###  http://purl.org/dc/terms/title
+dct:title rdf:type owl:AnnotationProperty ;
+          rdfs:label "Title"@en-us ;
+          skos:definition "A name given to the resource."@en-us ;
+          skos:note "In current practice, this term is used primarily with literal values; however, there are important uses with non-literal values as well. As of December 2007, the DCMI Usage Board is leaving this range unspecified pending an investigation of options."@en-us .
+
+
+###  http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled
+<http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> rdf:type owl:AnnotationProperty .
+
+
+###  http://www.w3.org/2004/02/skos/core#definition
+skos:definition rdf:type owl:AnnotationProperty .
+
+
+###  http://www.w3.org/2004/02/skos/core#note
+skos:note rdf:type owl:AnnotationProperty .
+
+
+###  http://www.w3.org/2004/02/skos/core#prefLabel
+skos:prefLabel rdf:type owl:AnnotationProperty .
+
+
+#################################################################
+#    Datatypes
+#################################################################
+
+###  http://www.opengis.net/ont/geosparql#wktLiteral
+geo:wktLiteral rdf:type rdfs:Datatype .
+
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://purl.org/dc/terms/accessRights
+dct:accessRights rdf:type owl:ObjectProperty ;
+                 rdfs:subPropertyOf dct:rights ;
+                 rdfs:comment "Access Rights may include information regarding access or restrictions based on privacy, security, or other policies."@en-us ;
+                 rdfs:label "Access Rights"@en-us ;
+                 skos:definition "Information about who can access the resource or an indication of its security status."@en-us .
+
+
+###  http://purl.org/dc/terms/audience
+dct:audience rdf:type owl:ObjectProperty ;
+             rdfs:label "Audience"@en-us ;
+             skos:definition "A class of entity for whom the resource is intended or useful."@en-us .
+
+
+###  http://purl.org/dc/terms/contributor
+dct:contributor rdf:type owl:ObjectProperty .
+
+
+###  http://purl.org/dc/terms/coverage
+dct:coverage rdf:type owl:ObjectProperty ;
+             rdfs:comment "Spatial topic and spatial applicability may be a named place or a location specified by its geographic coordinates. Temporal topic may be a named period, date, or date range. A jurisdiction may be a named administrative entity or a geographic place to which the resource applies. Recommended best practice is to use a controlled vocabulary such as the Thesaurus of Geographic Names [TGN]. Where appropriate, named places or time periods can be used in preference to numeric identifiers such as sets of coordinates or date ranges."@en-us ;
+             rdfs:label "Coverage"@en-us ;
+             rdfs:seeAlso <http://www.getty.edu/research/tools/vocabulary/tgn/index.html> ;
+             skos:definition "The spatial or temporal topic of the resource, the spatial applicability of the resource, or the jurisdiction under which the resource is relevant."@en-us ;
+             skos:note "In this ontology this property has been defined as an object property, meaning when using this ontology you cannot encode its value as a literal (e.g. by using DCMI's DCSV) but only as a related description."@en .
+
+
+###  http://purl.org/dc/terms/creator
+dct:creator rdf:type owl:ObjectProperty ;
+            rdfs:subPropertyOf dct:contributor .
+
+
+###  http://purl.org/dc/terms/educationLevel
+dct:educationLevel rdf:type owl:ObjectProperty ;
+                   rdfs:subPropertyOf dct:audience ;
+                   rdfs:label "Audience Education Level"@en-us ;
+                   skos:definition "A class of entity, defined in terms of progression through an educational or training context, for which the described resource is intended."@en-us .
+
+
+###  http://purl.org/dc/terms/extent
+dct:extent rdf:type owl:ObjectProperty ;
+           rdfs:subPropertyOf dct:format ;
+           rdfs:label "Extent"@en-us ;
+           skos:definition "The size or duration of the resource."@en-us ;
+           skos:note "In this ontology this property has been defined as an object property, meaning when using this ontology you cannot encode its value as a literal (e.g. by using DCMI's DCSV) but only as a related description."@en .
+
+
+###  http://purl.org/dc/terms/format
+dct:format rdf:type owl:ObjectProperty ;
+           rdfs:comment "Examples of dimensions include size and duration. Recommended best practice is to use a controlled vocabulary such as the list of Internet Media Types [MIME]."@en-us ;
+           rdfs:label "Format"@en-us ;
+           rdfs:seeAlso <http://www.iana.org/assignments/media-types/> ;
+           skos:definition "The file format, physical medium, or dimensions of the resource."@en-us ;
+           skos:note "In this ontology this property has been defined as an object property, meaning when using this ontology you cannot encode its value as a literal (e.g. by using DCMI's DCSV) but only as a related description."@en .
+
+
+###  http://purl.org/dc/terms/license
+dct:license rdf:type owl:ObjectProperty ;
+            rdfs:subPropertyOf dct:rights ;
+            rdfs:label "License"@en-us ;
+            skos:definition "A legal document giving official permission to do something with the resource."@en-us .
+
+
+###  http://purl.org/dc/terms/mediator
+dct:mediator rdf:type owl:ObjectProperty ;
+             rdfs:subPropertyOf dct:audience ;
+             rdfs:comment "In an educational context, a mediator might be a parent, teacher, teaching assistant, or care-giver."@en-us ;
+             rdfs:label "Mediator"@en-us ;
+             skos:definition "An entity that mediates access to the resource and for whom the resource is intended or useful."@en-us .
+
+
+###  http://purl.org/dc/terms/medium
+dct:medium rdf:type owl:ObjectProperty ;
+           rdfs:subPropertyOf dct:format ;
+           rdfs:label "Medium"@en-us ;
+           skos:definition "The material or physical carrier of the resource."@en-us ;
+           skos:note "In this ontology this property has been defined as an object property, meaning when using this ontology you cannot encode its value as a literal but only as a related description."@en .
+
+
+###  http://purl.org/dc/terms/rights
+dct:rights rdf:type owl:ObjectProperty ;
+           rdfs:comment "Typically, rights information includes a statement about various property rights associated with the resource, including intellectual property rights."@en-us ;
+           rdfs:label "Rights"@en-us ;
+           skos:definition "Information about rights held in and over the resource."@en-us .
+
+
+###  http://purl.org/dc/terms/spatial
+dct:spatial rdf:type owl:ObjectProperty ;
+            rdfs:subPropertyOf dct:coverage ;
+            rdfs:label "Spatial Coverage"@en-us ;
+            skos:definition "Spatial characteristics of the resource."@en-us ;
+            skos:note "In this ontology this property has been defined as an object property, meaning when using this ontology you cannot encode its value as a literal (e.g. by using DCMI's DCSV) but only as a related description."@en .
+
+
+###  http://purl.org/dc/terms/subject
+dct:subject rdf:type owl:ObjectProperty ;
+            rdfs:comment "Typically, the subject will be represented using keywords, key phrases, or classification codes. Recommended best practice is to use a controlled vocabulary. To describe the spatial or temporal topic of the resource, use the Coverage element."@en-us ;
+            rdfs:label "Subject"@en-us ;
+            skos:definition "The topic of the resource."@en-us .
+
+
+###  http://purl.org/dc/terms/temporal
+dct:temporal rdf:type owl:ObjectProperty ;
+             rdfs:subPropertyOf dct:coverage ;
+             rdfs:label "Temporal Coverage"@en-us ;
+             skos:definition "Temporal characteristics of the resource."@en-us ;
+             skos:note "In this ontology this property has been defined as an object property, meaning when using this ontology you cannot encode its value as a literal (e.g. by using DCMI's DCSV) but only as a related description."@en .
+
+
+###  http://purl.org/dc/terms/type
+dct:type rdf:type owl:ObjectProperty ;
+         rdfs:comment "Recommended best practice is to use a controlled vocabulary such as the DCMI Type Vocabulary [DCMITYPE]. To describe the file format, physical medium, or dimensions of the resource, use the Format element."@en-us ;
+         rdfs:label "Type"@en-us ;
+         rdfs:seeAlso <http://dublincore.org/documents/dcmi-type-vocabulary/> ;
+         skos:definition "The nature or genre of the resource."@en-us .
+
+
+###  http://schema.org/containedInPlace
+schema:containedInPlace rdf:type owl:ObjectProperty ;
+                        owl:inverseOf schema:containsPlace ;
+                        rdfs:comment "The basic containment relation between a place and one that contains it."@en ;
+                        rdfs:isDefinedBy "http://schema.org/" ;
+                        rdfs:label "containedInPlace"@en .
+
+
+###  http://schema.org/containsPlace
+schema:containsPlace rdf:type owl:ObjectProperty ;
+                     rdfs:comment "The basic containment relation between a place and another that it contains."@en ;
+                     rdfs:isDefinedBy "http://schema.org/" ;
+                     rdfs:label "containsPlace"@en .
+
+
+###  http://ulusalharita.tr/ont/spo#hasRelation
+spo:hasRelation rdf:type owl:ObjectProperty ,
+                         owl:SymmetricProperty ,
+                         owl:TransitiveProperty ;
+                rdfs:domain geo:SpatialObject ;
+                rdfs:range geo:SpatialObject ;
+                rdfs:label "Has relation"@en .
+
+
+###  http://ulusalharita.tr/ont/spo#hasScale
+spo:hasScale rdf:type owl:ObjectProperty ;
+             rdfs:range spo:Scale ;
+             rdfs:comment "Scale of geometry object"@en .
+
+
+###  http://ulusalharita.tr/ont/spo#multipleRelation
+spo:multipleRelation rdf:type owl:ObjectProperty ;
+                     rdfs:subPropertyOf spo:hasRelation ;
+                     rdf:type owl:SymmetricProperty ;
+                     rdfs:domain geo:SpatialObject ;
+                     rdfs:range geo:SpatialObject ;
+                     rdfs:comment "n:m relations between features"@en ;
+                     rdfs:label "Multiple relation"@en .
+
+
+###  http://ulusalharita.tr/ont/spo#sameAsRelation
+spo:sameAsRelation rdf:type owl:ObjectProperty ;
+                   rdfs:subPropertyOf spo:hasRelation ;
+                   rdf:type owl:SymmetricProperty ,
+                            owl:TransitiveProperty ;
+                   rdfs:domain geo:SpatialObject ;
+                   rdfs:range geo:SpatialObject ;
+                   rdfs:comment "1:1 realation between features"@en ;
+                   rdfs:label "Same as relation"@en .
+
+
+###  http://ulusalharita.tr/ont/spo#subSetOf
+spo:subSetOf rdf:type owl:ObjectProperty ;
+             rdfs:subPropertyOf spo:hasRelation ;
+             owl:inverseOf spo:superSetOf ;
+             rdf:type owl:TransitiveProperty ;
+             rdfs:domain geo:SpatialObject ;
+             rdfs:range geo:SpatialObject ;
+             rdfs:comment "n:1 relation between features"@en ;
+             rdfs:label "Sub set of"@en .
+
+
+###  http://ulusalharita.tr/ont/spo#superSetOf
+spo:superSetOf rdf:type owl:ObjectProperty ;
+               rdfs:subPropertyOf spo:hasRelation ;
+               rdf:type owl:TransitiveProperty ;
+               rdfs:domain geo:SpatialObject ;
+               rdfs:range geo:SpatialObject ;
+               rdfs:comment "1:n relation between features"@en ;
+               rdfs:label "Super set of"@en .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#hasPart
+dul:hasPart rdf:type owl:ObjectProperty ;
+            owl:inverseOf dul:isPartOf ;
+            rdf:type owl:TransitiveProperty ;
+            rdfs:domain geo:SpatialObject ;
+            rdfs:range geo:SpatialObject ;
+            rdfs:comment """A schematic relation between any entities, e.g. 'the human body has a brain as part', '20th century contains year 1923', 'World War II includes the Pearl Harbour event'.
+Subproperties and restrictions can be used to specialize hasPart for objects, events, etc."""^^xsd:string ;
+            rdfs:isDefinedBy <http://www.ontologydesignpatterns.org/ont/dul/DUL.owl> ;
+            rdfs:label "ha parte"@it ,
+                       "has part"@en .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#isPartOf
+dul:isPartOf rdf:type owl:ObjectProperty ,
+                      owl:TransitiveProperty ;
+             rdfs:domain geo:SpatialObject ;
+             rdfs:range geo:SpatialObject ;
+             rdfs:comment "A relation between any entities, e.g.'brain is a part of the human body'."^^xsd:string ;
+             rdfs:isDefinedBy <http://www.ontologydesignpatterns.org/ont/dul/DUL.owl> ;
+             rdfs:label "is part of"@en ,
+                        "è parte di"@it .
+
+
+###  http://www.opengis.net/ont/geosparql#defaultGeometry
+geo:defaultGeometry rdf:type owl:ObjectProperty ;
+                    rdfs:subPropertyOf geo:hasGeometry ;
+                    rdfs:domain geo:Feature ;
+                    rdfs:range geo:Geometry ;
+                    rdfs:comment """
+      The default geometry to be used in spatial calculations.
+      It is Usually the most detailed geometry.
+    """@en ;
+                    rdfs:isDefinedBy <http://www.opengis.net/ont/geosparql> ,
+                                     <http://www.opengis.net/spec/geosparql/1.0> ;
+                    rdfs:label "defaultGeometry"@en ;
+                    skos:prefLabel "defaultGeometry"@en .
+
+
+###  http://www.opengis.net/ont/geosparql#hasGeometry
+geo:hasGeometry rdf:type owl:ObjectProperty ;
+                rdfs:domain geo:Feature ;
+                rdfs:range geo:Geometry ;
+                rdfs:comment """
+      A spatial representation for a given feature.
+    """@en ;
+                rdfs:isDefinedBy <http://www.opengis.net/ont/geosparql> ,
+                                 <http://www.opengis.net/spec/geosparql/1.0> ;
+                rdfs:label "hasGeometry"@en ;
+                skos:prefLabel "hasGeometry"@en .
+
+
+###  http://www.opengis.net/ont/geosparql#sfContains
+geo:sfContains rdf:type owl:ObjectProperty ;
+               rdfs:domain geo:SpatialObject ;
+               rdfs:range geo:SpatialObject ;
+               rdfs:comment """
+      Exists if the subject SpatialObject spatially contains the 
+      object SpatialObject. DE-9IM: T*****FF*
+    """@en ;
+               rdfs:isDefinedBy <http://www.opengis.net/ont/geosparql> ,
+                                <http://www.opengis.net/spec/geosparql/1.0> ;
+               rdfs:label "contains"@en ;
+               skos:prefLabel "contains"@en .
+
+
+###  http://www.opengis.net/ont/geosparql#sfCrosses
+geo:sfCrosses rdf:type owl:ObjectProperty ;
+              rdfs:domain geo:SpatialObject ;
+              rdfs:range geo:SpatialObject ;
+              rdfs:comment """
+      Exists if the subject SpatialObject spatially crosses the 
+      object SpatialObject. DE-9IM: T*T******
+    """@en ;
+              rdfs:isDefinedBy <http://www.opengis.net/ont/geosparql> ,
+                               <http://www.opengis.net/spec/geosparql/1.0> ;
+              rdfs:label "crosses"@en ;
+              skos:prefLabel "crosses"@en .
+
+
+###  http://www.opengis.net/ont/geosparql#sfDisjoint
+geo:sfDisjoint rdf:type owl:ObjectProperty ;
+               rdfs:domain geo:SpatialObject ;
+               rdfs:range geo:SpatialObject ;
+               rdfs:comment """
+      Exists if the subject SpatialObject is spatially disjoint 
+      from the object SpatialObject. DE-9IM: FF*FF****
+    """@en ;
+               rdfs:isDefinedBy <http://www.opengis.net/ont/geosparql> ,
+                                <http://www.opengis.net/spec/geosparql/1.0> ;
+               rdfs:label "disjoint"@en ;
+               skos:prefLabel "disjoint"@en .
+
+
+###  http://www.opengis.net/ont/geosparql#sfEquals
+geo:sfEquals rdf:type owl:ObjectProperty ;
+             rdfs:domain geo:SpatialObject ;
+             rdfs:range geo:SpatialObject ;
+             rdfs:comment """
+      Exists if the subject SpatialObject spatially equals the 
+      object SpatialObject. DE-9IM: TFFFTFFFT
+    """@en ;
+             rdfs:isDefinedBy <http://www.opengis.net/ont/geosparql> ,
+                              <http://www.opengis.net/spec/geosparql/1.0> ;
+             rdfs:label "equals"@en ;
+             skos:prefLabel "equals"@en .
+
+
+###  http://www.opengis.net/ont/geosparql#sfIntersects
+geo:sfIntersects rdf:type owl:ObjectProperty ;
+                 rdfs:domain geo:SpatialObject ;
+                 rdfs:range geo:SpatialObject ;
+                 rdfs:comment """
+      Exists if the subject SpatialObject is not spatially disjoint 
+      from the object SpatialObject.
+      DE-9IM: T******** ^ *T******* ^ ***T***** ^ ****T**** 
+    """@en ;
+                 rdfs:isDefinedBy <http://www.opengis.net/ont/geosparql> ,
+                                  <http://www.opengis.net/spec/geosparql/1.0> ;
+                 rdfs:label "intersects"@en ;
+                 skos:prefLabel "intersects"@en .
+
+
+###  http://www.opengis.net/ont/geosparql#sfOverlaps
+geo:sfOverlaps rdf:type owl:ObjectProperty ;
+               rdfs:domain geo:SpatialObject ;
+               rdfs:range geo:SpatialObject ;
+               rdfs:comment """
+      Exists if the subject SpatialObject spatially overlaps the 
+      object SpatialObject. DE-9IM: T*T***T** 
+    """@en ;
+               rdfs:isDefinedBy <http://www.opengis.net/ont/geosparql> ,
+                                <http://www.opengis.net/spec/geosparql/1.0> ;
+               rdfs:label "overlaps"@en ;
+               skos:prefLabel "overlaps"@en .
+
+
+###  http://www.opengis.net/ont/geosparql#sfTouches
+geo:sfTouches rdf:type owl:ObjectProperty ;
+              rdfs:domain geo:SpatialObject ;
+              rdfs:range geo:SpatialObject ;
+              rdfs:comment """
+      Exists if the subject SpatialObject spatially touches the 
+      object SpatialObject.
+      DE-9IM: FT******* ^ F**T***** ^ F***T****
+    """@en ;
+              rdfs:isDefinedBy <http://www.opengis.net/ont/geosparql> ,
+                               <http://www.opengis.net/spec/geosparql/1.0> ;
+              rdfs:label "touches"@en ;
+              skos:prefLabel "touches"@en .
+
+
+###  http://www.opengis.net/ont/geosparql#sfWithin
+geo:sfWithin rdf:type owl:ObjectProperty ;
+             rdfs:domain geo:SpatialObject ;
+             rdfs:range geo:SpatialObject ;
+             rdfs:comment """
+      Exists if the subject SpatialObject is spatially within the 
+      object SpatialObject. DE-9IM: T*F**F***
+    """@en ;
+             rdfs:isDefinedBy <http://www.opengis.net/ont/geosparql> ,
+                              <http://www.opengis.net/spec/geosparql/1.0> ;
+             rdfs:label "within"@en ;
+             skos:prefLabel "within"@en .
+
+
+#################################################################
+#    Data properties
+#################################################################
+
+###  http://purl.org/dc/terms/available
+dct:available rdf:type owl:DatatypeProperty ;
+              rdfs:subPropertyOf dct:date ;
+              rdfs:range rdfs:Literal ;
+              rdfs:label "Date Available"@en-us ;
+              skos:definition "Date (often a range) that the resource became or will become available."@en-us .
+
+
+###  http://purl.org/dc/terms/bibliographicCitation
+dct:bibliographicCitation rdf:type owl:DatatypeProperty ;
+                          rdfs:subPropertyOf dct:identifier ;
+                          rdfs:range rdfs:Literal ;
+                          rdfs:comment "Recommended practice is to include sufficient bibliographic detail to identify the resource as unambiguously as possible."@en-us ;
+                          rdfs:label "Bibliographic Citation"@en-us ;
+                          skos:definition "A bibliographic reference for the resource."@en-us .
+
+
+###  http://purl.org/dc/terms/created
+dct:created rdf:type owl:DatatypeProperty ;
+            rdfs:subPropertyOf dct:date ;
+            rdfs:range rdfs:Literal ;
+            rdfs:label "Date Created"@en-us ;
+            skos:definition "Date of creation of the resource."@en-us .
+
+
+###  http://purl.org/dc/terms/date
+dct:date rdf:type owl:DatatypeProperty ;
+         rdfs:range rdfs:Literal ;
+         rdfs:comment "Date may be used to express temporal information at any level of granularity. Recommended best practice is to use an encoding scheme, such as the W3CDTF profile of ISO 8601 [W3CDTF]."@en-us ;
+         rdfs:label "Date"@en-us ;
+         rdfs:seeAlso <http://www.w3.org/TR/NOTE-datetime> ;
+         skos:definition "A point or period of time associated with an event in the lifecycle of the resource."@en-us .
+
+
+###  http://purl.org/dc/terms/dateAccepted
+dct:dateAccepted rdf:type owl:DatatypeProperty ;
+                 rdfs:subPropertyOf dct:date ;
+                 rdfs:range rdfs:Literal ;
+                 rdfs:comment "Examples of resources to which a Date Accepted may be relevant are a thesis (accepted by a university department) or an article (accepted by a journal)."@en-us ;
+                 rdfs:label "Date Accepted"@en-us ;
+                 skos:definition "Date of acceptance of the resource."@en-us .
+
+
+###  http://purl.org/dc/terms/dateCopyrighted
+dct:dateCopyrighted rdf:type owl:DatatypeProperty ;
+                    rdfs:subPropertyOf dct:date ;
+                    rdfs:range rdfs:Literal ;
+                    rdfs:label "Date Copyrighted"@en-us ;
+                    skos:definition "Date of copyright."@en-us .
+
+
+###  http://purl.org/dc/terms/dateSubmitted
+dct:dateSubmitted rdf:type owl:DatatypeProperty ;
+                  rdfs:subPropertyOf dct:date ;
+                  rdfs:range rdfs:Literal ;
+                  rdfs:comment "Examples of resources to which a Date Submitted may be relevant are a thesis (submitted to a university department) or an article (submitted to a journal)."@en-us ;
+                  rdfs:label "Date Submitted"@en-us ;
+                  skos:definition "Date of submission of the resource."@en-us .
+
+
+###  http://purl.org/dc/terms/identifier
+dct:identifier rdf:type owl:DatatypeProperty ;
+               rdfs:range rdfs:Literal ;
+               rdfs:comment "Recommended best practice is to identify the resource by means of a string conforming to a formal identification system."@en-us ;
+               rdfs:label "Identifier"@en-us ;
+               skos:definition "An unambiguous reference to the resource within a given context."@en-us .
+
+
+###  http://purl.org/dc/terms/issued
+dct:issued rdf:type owl:DatatypeProperty ;
+           rdfs:subPropertyOf dct:date ;
+           rdfs:range rdfs:Literal ;
+           rdfs:label "Date Issued"@en-us ;
+           skos:definition "Date of formal issuance (e.g., publication) of the resource."@en-us .
+
+
+###  http://purl.org/dc/terms/modified
+dct:modified rdf:type owl:DatatypeProperty ;
+             rdfs:subPropertyOf dct:date ;
+             rdfs:range rdfs:Literal ;
+             rdfs:label "Date Modified"@en-us ;
+             skos:definition "Date on which the resource was changed."@en-us .
+
+
+###  http://purl.org/dc/terms/valid
+dct:valid rdf:type owl:DatatypeProperty ;
+          rdfs:subPropertyOf dct:date ;
+          rdfs:range rdfs:Literal ;
+          rdfs:label "Date Valid"@en-us ;
+          skos:definition "Date (often a range) of validity of a resource."@en-us .
+
+
+###  http://ulusalharita.tr/ont/spo#hasLowerBound
+spo:hasLowerBound rdf:type owl:DatatypeProperty ;
+                  rdfs:domain spo:Scale ;
+                  rdfs:range xsd:float ;
+                  rdfs:comment "The denominator of the most detailed level in range"@en ;
+                  rdfs:label "Has lower bound"@en .
+
+
+###  http://ulusalharita.tr/ont/spo#hasReferenceLevel
+spo:hasReferenceLevel rdf:type owl:DatatypeProperty ;
+                      rdfs:domain spo:Scale ;
+                      rdfs:range xsd:float ;
+                      rdfs:comment "The denominator of the reference (default) level"@en ;
+                      rdfs:label "Has reference level"@en .
+
+
+###  http://ulusalharita.tr/ont/spo#hasUpperBound
+spo:hasUpperBound rdf:type owl:DatatypeProperty ;
+                  rdfs:domain spo:Scale ;
+                  rdfs:range xsd:float ;
+                  rdfs:comment "The denominator of the least detailed level in range"@en ;
+                  rdfs:label "Has upper bound"@en .
+
+
+###  http://www.opengis.net/ont/geosparql#asWKT
+geo:asWKT rdf:type owl:DatatypeProperty ;
+          rdfs:domain geo:Geometry ;
+          rdfs:range geo:wktLiteral ;
+          rdfs:comment """
+      The WKT serialization of a geometry
+    """@en ;
+          rdfs:isDefinedBy <http://www.opengis.net/ont/geosparql> ,
+                           <http://www.opengis.net/spec/geosparql/1.0> ;
+          rdfs:label "asWKT"@en ;
+          skos:prefLabel "asWKT"@en .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://ulusalharita.tr/ont/spo#Address
+spo:Address rdf:type owl:Class ;
+            rdfs:subClassOf spo:TopographicFeature ;
+            rdfs:label "Adress"@en .
+
+
+###  http://ulusalharita.tr/ont/spo#AdministrativeUnit
+spo:AdministrativeUnit rdf:type owl:Class ;
+                       rdfs:subClassOf spo:TopographicFeature ;
+                       rdfs:label "Administrative Unit"@en .
+
+
+###  http://ulusalharita.tr/ont/spo#Bio_diversity
+spo:Bio_diversity rdf:type owl:Class ;
+                  rdfs:subClassOf spo:ThematicFeature ;
+                  rdfs:label "Bio-diversity"@en .
+
+
+###  http://ulusalharita.tr/ont/spo#BuildingAndFacilities
+spo:BuildingAndFacilities rdf:type owl:Class ;
+                          rdfs:subClassOf spo:Settlement ;
+                          rdfs:label "Building and Facilities"@en .
+
+
+###  http://ulusalharita.tr/ont/spo#BuiltUpAreas
+spo:BuiltUpAreas rdf:type owl:Class ;
+                 rdfs:subClassOf spo:Settlement ;
+                 rdfs:label "Built up Areas"@en .
+
+
+###  http://ulusalharita.tr/ont/spo#Cadastre
+spo:Cadastre rdf:type owl:Class ;
+             rdfs:subClassOf spo:TopographicFeature ;
+             rdfs:label "Cadastre"@en .
+
+
+###  http://ulusalharita.tr/ont/spo#GeodeticInfrastructure
+spo:GeodeticInfrastructure rdf:type owl:Class ;
+                           rdfs:subClassOf spo:TopographicFeature ;
+                           rdfs:label "Geodetic Infrastructure"@en .
+
+
+###  http://ulusalharita.tr/ont/spo#Geology_Environment
+spo:Geology_Environment rdf:type owl:Class ;
+                        rdfs:subClassOf spo:ThematicFeature ;
+                        rdfs:label "Geology/Environment"@en .
+
+
+###  http://ulusalharita.tr/ont/spo#Hydrography
+spo:Hydrography rdf:type owl:Class ;
+                rdfs:subClassOf spo:TopographicFeature ;
+                rdfs:label "Hydrography"@en .
+
+
+###  http://ulusalharita.tr/ont/spo#Infrastructure
+spo:Infrastructure rdf:type owl:Class ;
+                   rdfs:subClassOf spo:ThematicFeature ;
+                   rdfs:label "Infrastructure"@en .
+
+
+###  http://ulusalharita.tr/ont/spo#LandCover
+spo:LandCover rdf:type owl:Class ;
+              rdfs:subClassOf spo:TopographicFeature ;
+              rdfs:label "Land Cover"@en .
+
+
+###  http://ulusalharita.tr/ont/spo#NaturalResources
+spo:NaturalResources rdf:type owl:Class ;
+                     rdfs:subClassOf spo:ThematicFeature ;
+                     rdfs:label "Natural Resources"@en .
+
+
+###  http://ulusalharita.tr/ont/spo#OpenSpaces
+spo:OpenSpaces rdf:type owl:Class ;
+               rdfs:subClassOf spo:Settlement ;
+               rdfs:label "Open Spaces"@en .
+
+
+###  http://ulusalharita.tr/ont/spo#Orthoimagery
+spo:Orthoimagery rdf:type owl:Class ;
+                 rdfs:subClassOf spo:TopographicFeature ;
+                 rdfs:label "Ortho-imagery"@en .
+
+
+###  http://ulusalharita.tr/ont/spo#RegulationZone
+spo:RegulationZone rdf:type owl:Class ;
+                   rdfs:subClassOf spo:ThematicFeature ;
+                   rdfs:label "Regulation Zone"@en .
+
+
+###  http://ulusalharita.tr/ont/spo#Restriction_ProtectionZones
+spo:Restriction_ProtectionZones rdf:type owl:Class ;
+                                rdfs:subClassOf spo:ThematicFeature ;
+                                rdfs:label "Restriction/Protection Zones"@en .
+
+
+###  http://ulusalharita.tr/ont/spo#Scale
+spo:Scale rdf:type owl:Class ;
+          rdfs:label "Cartographic Scale"@en .
+
+
+###  http://ulusalharita.tr/ont/spo#Settlement
+spo:Settlement rdf:type owl:Class ;
+               rdfs:subClassOf spo:TopographicFeature ;
+               rdfs:label "Settlement"@en .
+
+
+###  http://ulusalharita.tr/ont/spo#Social_Culture
+spo:Social_Culture rdf:type owl:Class ;
+                   rdfs:subClassOf spo:ThematicFeature ;
+                   rdfs:label "Social/Culture"@en .
+
+
+###  http://ulusalharita.tr/ont/spo#ThematicFeature
+spo:ThematicFeature rdf:type owl:Class ;
+                    rdfs:subClassOf geo:Feature ;
+                    rdfs:label "Thematic Feature"@en .
+
+
+###  http://ulusalharita.tr/ont/spo#TopographicFeature
+spo:TopographicFeature rdf:type owl:Class ;
+                       rdfs:subClassOf geo:Feature ;
+                       rdfs:label "Topographic Feature"@en .
+
+
+###  http://ulusalharita.tr/ont/spo#Topography
+spo:Topography rdf:type owl:Class ;
+               rdfs:subClassOf spo:TopographicFeature ;
+               rdfs:label "Topography"@en .
+
+
+###  http://ulusalharita.tr/ont/spo#Transportation
+spo:Transportation rdf:type owl:Class ;
+                   rdfs:subClassOf spo:TopographicFeature ;
+                   rdfs:label "Transportation"@en .
+
+
+###  http://ulusalharita.tr/ont/spo#Weather_Climate
+spo:Weather_Climate rdf:type owl:Class ;
+                    rdfs:subClassOf spo:ThematicFeature ;
+                    rdfs:label "Weather/Climate"@en .
+
+
+###  http://www.opengis.net/ont/geosparql#Feature
+geo:Feature rdf:type owl:Class ;
+            rdfs:subClassOf geo:SpatialObject ;
+            owl:disjointWith geo:Geometry ;
+            rdfs:comment """
+      This class represents the top-level feature type. This class is 
+      equivalent to GFI_Feature defined in ISO 19156:2011, and it is 
+      superclass of all feature types.
+    """@en ;
+            rdfs:isDefinedBy <http://www.opengis.net/ont/geosparql> ,
+                             <http://www.opengis.net/ont/gml> ,
+                             <http://www.opengis.net/spec/geosparql/1.0> ;
+            rdfs:label "Feature"@en ;
+            skos:prefLabel "Feature"@en .
+
+
+###  http://www.opengis.net/ont/geosparql#Geometry
+geo:Geometry rdf:type owl:Class ;
+             rdfs:subClassOf geo:SpatialObject ;
+             rdfs:comment """
+      The class represents the top-level geometry type. This class is 
+      equivalent to the UML class GM_Object defined in ISO 19107, and 
+      it is superclass of all geometry types.
+    """@en ;
+             rdfs:isDefinedBy <http://www.opengis.net/ont/geosparql> ,
+                              <http://www.opengis.net/ont/gml> ,
+                              <http://www.opengis.net/spec/geosparql/1.0> ;
+             rdfs:label "Geometry"@en ;
+             skos:prefLabel "Geometry"@en .
+
+
+###  http://www.opengis.net/ont/geosparql#SpatialObject
+geo:SpatialObject rdf:type owl:Class ;
+                  rdfs:comment """
+      The class spatial-object represents everything that can have 
+      a spatial representation. It is superclass of feature and geometry.
+    """@en ;
+                  rdfs:isDefinedBy <http://www.opengis.net/ont/geosparql> ,
+                                   <http://www.opengis.net/ont/gml> ,
+                                   <http://www.opengis.net/spec/geosparql/1.0> ;
+                  rdfs:label "SpatialObject"@en ;
+                  skos:prefLabel "SpatialObject"@en .
+
+
+###  http://www.opengis.net/ont/sf#GeometryCollection
+sf:GeometryCollection rdf:type owl:Class ;
+                      rdfs:subClassOf geo:Geometry ;
+                      rdfs:comment """
+A GeometryCollection is a geometric object that is a collection of some number of geometric objects.
+All the elements in a GeometryCollection shall be in the same Spatial Reference System. This is also the Spatial Reference System for the GeometryCollection.
+GeometryCollection places no other constraints on its elements. Subclasses of GeometryCollection may restrict membership based on dimension and may also place other constraints on the degree of spatial overlap between elements.
+    """@en ;
+                      rdfs:isDefinedBy <http://www.opengis.net/ont/sf> ;
+                      rdfs:label "Geometry Collection"@en .
+
+
+###  http://www.opengis.net/ont/sf#LineString
+sf:LineString rdf:type owl:Class ;
+              rdfs:subClassOf geo:Geometry ;
+              rdfs:comment """
+A LineString is a Curve with linear interpolation between Points. Each consecutive pair of Points defines a Line segment.
+    """@en ;
+              rdfs:isDefinedBy <http://www.opengis.net/ont/sf> ;
+              rdfs:label "Line String"@en .
+
+
+###  http://www.opengis.net/ont/sf#MultiLineString
+sf:MultiLineString rdf:type owl:Class ;
+                   rdfs:subClassOf sf:GeometryCollection ;
+                   rdfs:comment """
+A MultiLineString is a MultiCurve whose elements are LineStrings.
+    """@en ;
+                   rdfs:isDefinedBy <http://www.opengis.net/ont/sf> ;
+                   rdfs:label "Multi Line String"@en .
+
+
+###  http://www.opengis.net/ont/sf#MultiPoint
+sf:MultiPoint rdf:type owl:Class ;
+              rdfs:subClassOf sf:GeometryCollection ;
+              rdfs:comment """
+A MultiPoint is a 0-dimensional GeometryCollection. The elements of a MultiPoint are restricted to Points. ThePoints are not connected or ordered in any semantically important way.
+A MultiPoint is simple if no two Points in the MultiPoint are equal (have identical coordinate values in X and Y).
+Every MultiPoint is spatially equal to a simple Multipoint.
+The boundary of a MultiPoint is the empty set.
+    """@en ;
+              rdfs:isDefinedBy <http://www.opengis.net/ont/sf> ;
+              rdfs:label "Multi Point"@en .
+
+
+###  http://www.opengis.net/ont/sf#MultiPolygon
+sf:MultiPolygon rdf:type owl:Class ;
+                rdfs:subClassOf sf:GeometryCollection ;
+                rdfs:comment """
+A MultiPolygon is a MultiSurface whose elements are Polygons.
+The assertions for MultiPolygons are as follows.
+a) The interiors of 2 Polygons that are elements of a MultiPolygon may not intersect.
+b) The boundaries of any 2 Polygons that are elements of a MultiPolygon may not cross and may touch at only a finite number of Points.
+c) A MultiPolygon is defined as topologically closed.
+d) A MultiPolygon may not have cut lines, spikes or punctures, a MultiPolygon is a regular closed Point set,
+e) The interior of a MultiPolygon with more than 1 Polygon is not connected; the number of connected components of the interior of a MultiPolygon is equal to the number of Polygons in the MultiPolygon. 
+The boundary of a MultiPolygon is a set of closed Curves (LineStrings) corresponding to the boundaries of its element Polygons. Each Curve in the boundary of the MultiPolygon is in the boundary of exactly 1 element Polygon, and every Curve in the boundary of an element Polygon is in the boundary of the MultiPolygon.
+    """@en ;
+                rdfs:isDefinedBy <http://www.opengis.net/ont/sf> ;
+                rdfs:label "Multi Polygon"@en .
+
+
+###  http://www.opengis.net/ont/sf#Point
+sf:Point rdf:type owl:Class ;
+         rdfs:subClassOf geo:Geometry ;
+         rdfs:comment """
+A Point is a 0-dimensional geometric object and represents a single location in coordinate space. 
+A Point has an x-coordinate value, a y-coordinate value. If called for by the associated Spatial Reference System, it may also have coordinate values for z and m.
+The boundary of a Point is the empty set.
+    """@en ;
+         rdfs:isDefinedBy <http://www.opengis.net/ont/sf> ;
+         rdfs:label "Point"@en .
+
+
+###  http://www.opengis.net/ont/sf#Polygon
+sf:Polygon rdf:type owl:Class ;
+           rdfs:subClassOf geo:Geometry ;
+           rdfs:comment """
+A Polygon is a planar Surface defined by 1 exterior boundary and 0 or more interior boundaries. Each interior boundary defines a hole in the Polygon.
+The exterior boundary LinearRing defines the top of the surface which is the side of the surface from which the exterior boundary appears to traverse the boundary in a counter clockwise direction. The interior LinearRings will have the opposite orientation, and appear as clockwise when viewed from the top,
+The assertions for Polygons (the rules that define valid Polygons) are as follows:
+a) Polygons are topologically closed;
+b) The boundary of a Polygon consists of a set of LinearRings that make up its exterior and interior boundaries;
+c) No two Rings in the boundary cross and the Rings in the boundary of a Polygon may intersect at a Point but only as a tangent.
+d) A Polygon may not have cut lines, spikes or punctures.
+e) The interior of every Polygon is a connected point set;
+f) The exterior of a Polygon with 1 or more holes is not connected. Each hole defines a connected component of the exterior.
+    """@en ;
+           rdfs:isDefinedBy <http://www.opengis.net/ont/sf> ;
+           rdfs:label "Polygon"@en .
+
+
+#################################################################
+#    Individuals
+#################################################################
+
+###  http://ulusalharita.tr/ont/spo#largeScale
+spo:largeScale rdf:type owl:NamedIndividual ,
+                        spo:Scale ;
+               spo:hasReferenceLevel "1000.0"^^xsd:float ;
+               spo:hasUpperBound "5000.0"^^xsd:float .
+
+
+###  http://ulusalharita.tr/ont/spo#mediumScale
+spo:mediumScale rdf:type owl:NamedIndividual ,
+                         spo:Scale ;
+                spo:hasLowerBound "5000.0"^^xsd:float ;
+                spo:hasUpperBound "15000.0"^^xsd:float .
+
+
+###  http://ulusalharita.tr/ont/spo#smallScale
+spo:smallScale rdf:type owl:NamedIndividual ,
+                        spo:Scale ;
+               spo:hasLowerBound "15000.0"^^xsd:float ;
+               spo:hasReferenceLevel "25000.0"^^xsd:float .
+
+
+#################################################################
+#    Annotations
+#################################################################
+
+dct:contributor rdfs:label "Contributor"@en-us ;
+                rdfs:comment "Examples of a Contributor include a person, an organization, or a service. Typically, the name of a Contributor should be used to indicate the entity."@en-us ;
+                skos:definition "An entity responsible for making contributions to the resource."@en-us .
+
+
+dct:creator skos:definition "An entity primarily responsible for making the resource."@en-us ;
+            rdfs:comment "Examples of a Creator include a person, an organization, or a service. Typically, the name of a Creator should be used to indicate the entity."@en-us ;
+            rdfs:label "Creator"@en-us .
+
+
+#################################################################
+#    General axioms
+#################################################################
+
+[ rdf:type owl:AllDifferent ;
+  owl:distinctMembers ( spo:largeScale
+                        spo:mediumScale
+                        spo:smallScale
+                      )
+] .
+
+
+#################################################################
+#    Rules
+#################################################################
+
+spo:ibb rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+spo:osm rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+spo:hgm rdf:type <http://www.w3.org/2003/11/swrl#Variable> .
+
+[ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
+   rdfs:comment ""^^xsd:string ;
+   rdfs:label "Rule 2"^^xsd:string ;
+   rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+   <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#propertyPredicate> spo:subSetOf ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> spo:ibb ;
+                                                       <http://www.w3.org/2003/11/swrl#argument2> spo:osm
+                                                     ] ;
+                                           rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                  <http://www.w3.org/2003/11/swrl#propertyPredicate> dul:isPartOf ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument1> spo:osm ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument2> spo:hgm
+                                                                ] ;
+                                                      rdf:rest rdf:nil
+                                                    ]
+                                         ] ;
+   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#propertyPredicate> dul:isPartOf ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> spo:ibb ;
+                                                       <http://www.w3.org/2003/11/swrl#argument2> spo:hgm
+                                                     ] ;
+                                           rdf:rest rdf:nil
+                                         ]
+ ] .
+
+[ <http://swrl.stanford.edu/ontologies/3.3/swrla.owl#isRuleEnabled> "true"^^xsd:boolean ;
+   rdfs:comment ""^^xsd:string ;
+   rdfs:label "Rule 1"^^xsd:string ;
+   rdf:type <http://www.w3.org/2003/11/swrl#Imp> ;
+   <http://www.w3.org/2003/11/swrl#body> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#propertyPredicate> spo:sameAsRelation ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> spo:ibb ;
+                                                       <http://www.w3.org/2003/11/swrl#argument2> spo:osm
+                                                     ] ;
+                                           rdf:rest [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                                      rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                                  <http://www.w3.org/2003/11/swrl#propertyPredicate> dul:isPartOf ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument1> spo:osm ;
+                                                                  <http://www.w3.org/2003/11/swrl#argument2> spo:hgm
+                                                                ] ;
+                                                      rdf:rest rdf:nil
+                                                    ]
+                                         ] ;
+   <http://www.w3.org/2003/11/swrl#head> [ rdf:type <http://www.w3.org/2003/11/swrl#AtomList> ;
+                                           rdf:first [ rdf:type <http://www.w3.org/2003/11/swrl#IndividualPropertyAtom> ;
+                                                       <http://www.w3.org/2003/11/swrl#propertyPredicate> dul:isPartOf ;
+                                                       <http://www.w3.org/2003/11/swrl#argument1> spo:ibb ;
+                                                       <http://www.w3.org/2003/11/swrl#argument2> spo:hgm
+                                                     ] ;
+                                           rdf:rest rdf:nil
+                                         ]
+ ] .
+
+###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi
